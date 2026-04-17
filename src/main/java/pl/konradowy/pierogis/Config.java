@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package pl.konradowy.pierogis;
 
 import java.util.List;
 import java.util.Set;
