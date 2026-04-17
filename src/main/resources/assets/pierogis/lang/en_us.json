@@ -1,0 +1,13 @@
+{
+  "itemGroup.pierogis": "Example Mod Tab",
+  "block.pierogis.example_block": "Example Block",
+  "item.pierogis.example_item": "Example Item",
+
+  "pierogis.configuration.title": "Example Mod Configs",
+  "pierogis.configuration.section.pierogis.common.toml": "Example Mod Configs",
+  "pierogis.configuration.section.pierogis.common.toml.title": "Example Mod Configs",
+  "pierogis.configuration.items": "Item List",
+  "pierogis.configuration.logDirtBlock": "Log Dirt Block",
+  "pierogis.configuration.magicNumberIntroduction": "Magic Number Text",
+  "pierogis.configuration.magicNumber": "Magic Number"
+}
