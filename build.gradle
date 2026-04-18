@@ -152,9 +152,12 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation "maven.modrinth:create:mc1.21.1-6.0.9"
     implementation "maven.modrinth:farmers-delight:1.21.1-1.2.11"
-    // implementation "maven.modrinth:farmers-delight-extended:1.21.1-0.2.2"
-    // implementation "maven.modrinth:more-delight:25.07.28a-1.21-neoforge"
-    // implementation "maven.modrinth:miners-delight:1.4.2"
+    implementation "maven.modrinth:farmers-delight-extended:1.21.1-0.2.2"
+    implementation "maven.modrinth:more-delight:25.07.28a-1.21-neoforge"
+    implementation "maven.modrinth:miners-delight:1.4.2"
+    
+    implementation "maven.modrinth:jei:YAcQ6elZ"
+    implementation "maven.modrinth:lodestonelib:1.8.2"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
