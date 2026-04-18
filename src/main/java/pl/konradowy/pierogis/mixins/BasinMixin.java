@@ -3,6 +3,7 @@ package pl.konradowy.pierogis.mixins;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinInventory;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
+// import pl.konradowy.pierogis.;;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,6 +21,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.core.Direction;
+
 @Mixin(BasinBlockEntity.class)
 public class BasinMixin {
 	@Shadow
@@ -31,11 +40,12 @@ public class BasinMixin {
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void onTick(CallbackInfo ci) {
-		BlockEntity be  = ((BlockEntity) (Object) this);
+		BlockEntity be = ((BlockEntity) (Object) this);
 		Level level = be.getLevel();
 		long ticks = level.getGameTime();
 
 		long delta = ticks - lastTick;
+
 		lastTick = ticks;
 
 		if (level.isClientSide)
@@ -66,17 +76,36 @@ public class BasinMixin {
 			System.err.println(fluidId);
 			System.err.println(amount);
 
-			fluid.putInt("amount", 100);
+			amount = fluid.getInt("amount");
+			if (amount == 1000) {
+				IItemHandler handler = level.getCapability(Capabilities.ItemHandler.BLOCK, pos, null);
 
-			tankContent.put("Fluid", fluid);
-			firstTank.put("TankContent", tankContent);
-			inputTanks.set(0, firstTank);
+				ItemStack stack = new ItemStack(Items.DIAMOND, 1);
 
-			nbt.put("InputTanks", inputTanks);
+				if (handler != null) {
+					for (int i = 0; i < handler.getSlots(); i++) {
+						stack = handler.insertItem(i, stack, false);
+						if (stack.isEmpty())
+							break;
+					}
+				}
+				if (stack.isEmpty()) {
+					fluid.putInt("amount", 1);
+					System.err.println("SET!");
 
-			be.loadWithComponents(nbt, level.registryAccess());
-			be.setChanged();
-			level.sendBlockUpdated(pos, be.getBlockState(), be.getBlockState(), 3);
+					tankContent.put("Fluid", fluid);
+					firstTank.put("TankContent", tankContent);
+					inputTanks.set(0, firstTank);
+
+					nbt.put("InputTanks", inputTanks);
+
+					be.loadWithComponents(nbt, level.registryAccess());
+					be.setChanged();
+					level.sendBlockUpdated(pos, be.getBlockState(), be.getBlockState(), 3);
+				}
+
+			}
+
 		}
 
 	}
