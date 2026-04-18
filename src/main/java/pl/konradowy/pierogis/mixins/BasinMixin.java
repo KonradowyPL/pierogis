@@ -78,6 +78,20 @@ public class BasinMixin {
 
 			amount = fluid.getInt("amount");
 			if (amount == 1000) {
+
+				fluid.putInt("amount", 1);
+				System.err.println("SET!");
+
+				tankContent.put("Fluid", fluid);
+				firstTank.put("TankContent", tankContent);
+				inputTanks.set(0, firstTank);
+
+				nbt.put("InputTanks", inputTanks);
+
+				be.loadWithComponents(nbt, level.registryAccess());
+				be.setChanged();
+				level.sendBlockUpdated(pos, be.getBlockState(), be.getBlockState(), 3);
+
 				IItemHandler handler = level.getCapability(Capabilities.ItemHandler.BLOCK, pos, null);
 
 				ItemStack stack = new ItemStack(Items.DIAMOND, 1);
@@ -89,21 +103,6 @@ public class BasinMixin {
 							break;
 					}
 				}
-				if (stack.isEmpty()) {
-					fluid.putInt("amount", 1);
-					System.err.println("SET!");
-
-					tankContent.put("Fluid", fluid);
-					firstTank.put("TankContent", tankContent);
-					inputTanks.set(0, firstTank);
-
-					nbt.put("InputTanks", inputTanks);
-
-					be.loadWithComponents(nbt, level.registryAccess());
-					be.setChanged();
-					level.sendBlockUpdated(pos, be.getBlockState(), be.getBlockState(), 3);
-				}
-
 			}
 
 		}
