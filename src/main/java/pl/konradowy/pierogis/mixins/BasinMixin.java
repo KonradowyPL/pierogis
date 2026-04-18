@@ -9,14 +9,16 @@ import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock.HeatLevel;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 
@@ -53,8 +55,11 @@ public class BasinMixin {
 			return;
 		}
 
-		if (level.isClientSide)
+		String above = BuiltInRegistries.BLOCK.getKey(level.getBlockState(pos.above(2)).getBlock()).toString();
+		
+		if (above == "create:mechanical_press" || above == "create:mechanical_mixer ") {
 			return;
+		}
 
 		CompoundTag nbt = be.saveWithFullMetadata(level.registryAccess());
 
@@ -96,8 +101,6 @@ public class BasinMixin {
 					}
 				}
 			}
-
 		}
-
 	}
 }

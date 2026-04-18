@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pierogis:ciasto"
+    }
+  ],
+  "result" : {
+    "count": 9,
+    "id": "pierogis:mienso_raw"
+  }
+}
