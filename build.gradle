@@ -27,6 +27,8 @@ sourceSets.main.resources {
 }
 
 repositories {
+           maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+    maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
         mavenCentral()
         maven {
             name = "NeoForged"
@@ -39,7 +41,9 @@ repositories {
             name = "Modrinth"
             url = "https://api.modrinth.com/maven"
         }
-    }
+}
+
+
 
 base {
     archivesName = mod_id
@@ -150,7 +154,6 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    implementation "maven.modrinth:create:mc1.21.1-6.0.9"
     implementation "maven.modrinth:farmers-delight:1.21.1-1.2.11"
     implementation "maven.modrinth:farmers-delight-extended:1.21.1-0.2.2"
     implementation "maven.modrinth:more-delight:25.07.28a-1.21-neoforge"
@@ -158,6 +161,14 @@ dependencies {
     
     implementation "maven.modrinth:jei:YAcQ6elZ"
     implementation "maven.modrinth:lodestonelib:1.8.2"
+
+implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -193,6 +204,7 @@ publishing {
     }
     repositories {
         mavenCentral()
+        maven { url = "https://maven.createmod.net" }
         maven {
             name = "NeoForged"
             url = "https://maven.neoforged.net/releases"

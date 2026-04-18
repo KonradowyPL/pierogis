@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "pl.konradowy.pierogis.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BasinMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
