@@ -59,6 +59,8 @@ public class Items {
       new Item.Properties().food(RAW_FOOD));
   public static final DeferredItem<Item> JAGODY_RAW = ITEMS.registerSimpleItem("jagoda_raw",
       new Item.Properties().food(RAW_FOOD));
+  public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt",
+      new Item.Properties().food(RAW_FOOD));
 
   // Gotowane pierogi
   public static final DeferredItem<Item> SYR_COOKED = ITEMS.registerSimpleItem("syr_cooked",
@@ -82,7 +84,11 @@ public class Items {
           .displayItems((parameters, output) -> {
             output.accept(EXAMPLE_ITEM.get());
             output.accept(EXAMPLE_BLOCK_ITEM.get());
+            
             output.accept(CIASTO.get());
+            output.accept(SALT.get());
+            
+            output.accept(RUSKI_COOKED.get());
             output.accept(SYR_RAW.get());
             output.accept(MIENSO_RAW.get());
             output.accept(KAPUSTA_RAW.get());
@@ -94,6 +100,7 @@ public class Items {
             output.accept(KAPUSTA_COOKED.get());
             output.accept(JAGODY_COOKED.get());
             output.accept(RUSKI_COOKED.get());
+            
 
           }).build());
 
