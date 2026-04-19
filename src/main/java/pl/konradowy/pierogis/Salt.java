@@ -8,7 +8,6 @@ import net.minecraft.world.item.TooltipFlag;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item.TooltipContext;
 
 public class Salt extends Item {
   public Salt(Properties properties) {

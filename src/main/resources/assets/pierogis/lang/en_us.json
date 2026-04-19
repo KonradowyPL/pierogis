@@ -19,15 +19,5 @@
   "item.pierogis.mienso_cooked": "Pieróg z mięsem",
   "item.pierogis.salt": "NaCl",
   "tooltip.pierogis.salt": "Obtained by heating water in a basin",
-  "item.pierogis.walek": "Wałek kuchenny",
-
-
-
-  "pierogis.configuration.title": "Example Mod Configs",
-  "pierogis.configuration.section.pierogis.common.toml": "Example Mod Configs",
-  "pierogis.configuration.section.pierogis.common.toml.title": "Example Mod Configs",
-  "pierogis.configuration.items": "Item List",
-  "pierogis.configuration.logDirtBlock": "Log Dirt Block",
-  "pierogis.configuration.magicNumberIntroduction": "Magic Number Text",
-  "pierogis.configuration.magicNumber": "Magic Number"
+  "item.pierogis.walek": "Wałek kuchenny"
 }
