@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 160,
+  "experience": 3.0,
+  "ingredients": [
+    {
+      "item": "pierogis:jagoda_raw"
+    },
+    {
+      "item": "pierogis:jagoda_raw"
+    },
+    {
+      "item": "pierogis:jagoda_raw"
+    },
+    {
+      "item": "pierogis:jagoda_raw"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "pierogis:jagoda_cooked",
+    "count": 4
+  }
+}

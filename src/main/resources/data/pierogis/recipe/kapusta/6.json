@@ -1,0 +1,30 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 160,
+  "experience": 6.0,
+  "ingredients": [
+    {
+      "item": "pierogis:kapusta_raw"
+    },
+    {
+      "item": "pierogis:kapusta_raw"
+    },
+    {
+      "item": "pierogis:kapusta_raw"
+    },
+    {
+      "item": "pierogis:kapusta_raw"
+    },
+    {
+      "item": "pierogis:kapusta_raw"
+    },
+    {
+      "item": "pierogis:kapusta_raw"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "pierogis:kapusta_cooked",
+    "count": 6
+  }
+}

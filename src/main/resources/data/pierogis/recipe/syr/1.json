@@ -1,0 +1,15 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 160,
+  "experience": 0.75,
+  "ingredients": [
+    {
+      "item": "pierogis:syr_raw"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "pierogis:syr_cooked",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 160,
+  "experience": 3.0,
+  "ingredients": [
+    {
+      "item": "pierogis:ruski_raw"
+    },
+    {
+      "item": "pierogis:ruski_raw"
+    },
+    {
+      "item": "pierogis:ruski_raw"
+    },
+    {
+      "item": "pierogis:ruski_raw"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "pierogis:ruski_cooked",
+    "count": 4
+  }
+}

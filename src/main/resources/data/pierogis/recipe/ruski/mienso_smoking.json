@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "pierogis:ruski_raw"
+  },
+  "result": {
+    "id": "pierogis:ruski_cooked"
+  }
+}
