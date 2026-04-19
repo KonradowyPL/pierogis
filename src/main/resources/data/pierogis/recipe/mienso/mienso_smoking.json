@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "pierogis:mienso_raw"
+  },
+  "result": {
+    "id": "pierogis:mienso_cooked"
+  }
+}

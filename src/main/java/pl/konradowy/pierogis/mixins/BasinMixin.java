@@ -28,7 +28,8 @@ import pl.konradowy.pierogis.Items;
 public class BasinMixin {
 
 	long lastTick = 0;
-	double p = 0.002; // 0.2% per second
+	double p = 0.001; // 0.1% per second
+	// double p = 1; // 100% per second
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void onTick(CallbackInfo ci) {
@@ -56,8 +57,7 @@ public class BasinMixin {
 		}
 
 		String above = BuiltInRegistries.BLOCK.getKey(level.getBlockState(pos.above(2)).getBlock()).toString();
-		
-		if (above == "create:mechanical_press" || above == "create:mechanical_mixer ") {
+		if (above.equals("create:mechanical_press") || above.equals("create:mechanical_mixer")) {
 			return;
 		}
 

@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 160,
+  "experience": 3.0,
+  "ingredients": [
+    {
+      "item": "pierogis:mienso_raw"
+    },
+    {
+      "item": "pierogis:mienso_raw"
+    },
+    {
+      "item": "pierogis:mienso_raw"
+    },
+    {
+      "item": "pierogis:mienso_raw"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "pierogis:mienso_cooked",
+    "count": 4
+  }
+}
