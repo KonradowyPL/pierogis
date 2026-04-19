@@ -1,0 +1,21 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "SPPPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pierogis:walek"
+  },
+  "show_notification": false
+}

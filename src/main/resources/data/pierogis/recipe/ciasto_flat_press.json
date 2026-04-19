@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "pierogis:ciasto"
+    }
+  ],
+  "results": [
+    {
+      "id": "pierogis:ciasto_flat"
+    }
+  ]
+}

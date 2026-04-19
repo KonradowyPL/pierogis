@@ -4,6 +4,7 @@
   "item.pierogis.example_item": "Example Item",
 
   "item.pierogis.ciasto": "Surowe ciasto na pierogi",
+  "item.pierogis.ciasto_flat": "Uwałkowane surowe ciasto na pierogi",
   "item.pierogis.syr_raw": "Surowy pieróg z serem",
   "item.pierogis.ruski_raw": "Surowy pieróg Ruski",
   "item.pierogis.jagoda_raw": "Surowy pieróg z jagodami",
@@ -16,6 +17,7 @@
   "item.pierogis.kapusta_cooked": "Pieróg z kapustą i grzybami",
   "item.pierogis.mienso_cooked": "Pieróg z mięsem",
   "item.pierogis.salt": "NaCl",
+  "tooltip.pierogis.salt": "Obtained by heating water in a basin",
   "item.pierogis.walek": "Wałek kuchenny",
 
 
