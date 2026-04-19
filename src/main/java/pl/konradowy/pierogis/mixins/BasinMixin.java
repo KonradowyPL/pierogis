@@ -42,6 +42,10 @@ public class BasinMixin {
 		double prob = 1.0 - Math.pow(1.0 - p, seconds);
 
 		double random = Math.random();
+		if (lastTick == 0) {
+			lastTick = ticks;
+			return;
+		}
 		lastTick = ticks;
 		if (random >= prob) {
 			return;
