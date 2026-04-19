@@ -2,6 +2,7 @@ package pl.konradowy.pierogis;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -15,8 +16,8 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -31,15 +32,14 @@ public class Items {
         public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(PierogisMod.MODID);
 
         // example block
-        public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block",
-                        BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-        public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block",
-                        EXAMPLE_BLOCK);
+        public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block",
+                        registryName -> new Block(BlockBehaviour.Properties.of()
+                                        .destroyTime(2.0f)
+                                        .explosionResistance(10.0f)
+                                        .sound(SoundType.MANGROVE_ROOTS)));
 
-        // example item
-        public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item",
-                        new Item.Properties().food(new FoodProperties.Builder()
-                                        .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+        public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block",
+                        () -> new PierogisBlock(EXAMPLE_BLOCK.get(), new Item.Properties()));
 
         private static final FoodProperties RAW_FOOD = new FoodProperties.Builder()
                         .nutrition(-1)
@@ -51,13 +51,6 @@ public class Items {
                         .build();
 
         public static ItemAttributeModifiers walek_modifiers = ItemAttributeModifiers.builder()
-                        // .add(
-                        // Attributes.ATTACK_DAMAGE,
-                        // new AttributeModifier(
-                        // ResourceLocation.fromNamespaceAndPath("minecraft", "attack_damage"),
-                        // 6.0,
-                        // AttributeModifier.Operation.ADD_VALUE),
-                        // EquipmentSlotGroup.MAINHAND)
                         .add(
                                         Attributes.ATTACK_KNOCKBACK,
                                         new AttributeModifier(
@@ -74,14 +67,6 @@ public class Items {
                                                         -3.5,
                                                         AttributeModifier.Operation.ADD_VALUE),
                                         EquipmentSlotGroup.MAINHAND)
-                        // .add(
-                        // Attributes.BLOCK_INTERACTION_RANGE,
-                        // new AttributeModifier(
-                        // ResourceLocation.fromNamespaceAndPath("minecraft",
-                        // "block_interaction_range"),
-                        // 4,
-                        // AttributeModifier.Operation.ADD_VALUE),
-                        // EquipmentSlotGroup.MAINHAND)
                         .build();
 
         public static final DeferredItem<Item> CIASTO = ITEMS.register("ciasto", () -> new Item(new Item.Properties()));
@@ -153,7 +138,6 @@ public class Items {
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
                                         .icon(() -> RUSKI_COOKED.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
-                                                output.accept(EXAMPLE_ITEM.get());
                                                 output.accept(EXAMPLE_BLOCK_ITEM.get());
 
                                                 output.accept(CIASTO.get());

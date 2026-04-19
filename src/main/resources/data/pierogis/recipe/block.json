@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "pierogis:pierogis"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pierogis:example_block"
+  }
+}

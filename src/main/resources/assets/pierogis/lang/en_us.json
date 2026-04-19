@@ -1,7 +1,6 @@
 {
   "itemGroup.pierogis": "Farmer's Pierogis",
-  "block.pierogis.example_block": "Example Block",
-  "item.pierogis.example_item": "Example Item",
+  "block.pierogis.example_block": "Block of Pierogis",
 
   "item.pierogis.ciasto": "Surowe ciasto na pierogi",
   "item.pierogis.ciasto_flat": "Uwałkowane surowe ciasto na pierogi",
@@ -19,5 +18,6 @@
   "item.pierogis.mienso_cooked": "Pieróg z mięsem",
   "item.pierogis.salt": "NaCl",
   "tooltip.pierogis.salt": "Obtained by heating water in a basin",
+  "tooltip.pierogis.block": "Zupełnie jak kafelki u mojej Babci...",
   "item.pierogis.walek": "Wałek kuchenny"
 }

@@ -2,6 +2,10 @@ package pl.konradowy.pierogis;
 
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -9,6 +13,8 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PierogisMod.MODID)
@@ -17,6 +23,13 @@ public class PierogisMod {
     public static final String MODID = "pierogis";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister
+            .create(BuiltInRegistries.SOUND_EVENT, MODID);
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> MY_SOUND = SOUND_EVENTS.register(
+            MODID, // must match the resource location on the next line
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "siemanko")));
 
     // The constructor for the mod class is the first code that is run when your mod
     // is loaded.
@@ -27,6 +40,7 @@ public class PierogisMod {
         modEventBus.addListener(this::commonSetup);
 
         Items.register(modEventBus);
+        SOUND_EVENTS.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
         // // Register the item to a creative tab

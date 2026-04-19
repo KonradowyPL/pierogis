@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "pierogis:pierogis"
+    },
+    "B": {
+      "tag": "minecraft:skulls"
+    }
+  },
+  "pattern": [
+    "A  ",
+    "B  ",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:player_head",
+    "components": {
+      "minecraft:note_block_sound": "pierogis:siemanko",
+      "minecraft:profile": "ThePearlyBum2",
+      "minecraft:custom_name":"{\"text\":\"Siemanko, witam w mojej kuchnii\",\"color\":\"blue\",\"bold\":true,\"italic\":false}"
+    }
+  }
+}
