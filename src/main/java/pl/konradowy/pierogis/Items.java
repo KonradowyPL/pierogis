@@ -117,15 +117,41 @@ public class Items {
 
         // Gotowane pierogi
         public static final DeferredItem<Item> SYR_COOKED = ITEMS.registerSimpleItem("syr_cooked",
-                        new Item.Properties().food(RAW_FOOD));
+                        new Item.Properties().food(new FoodProperties.Builder()
+                                        .nutrition(4)
+                                        .saturationModifier(2)
+                                        .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600), 1f)
+                                        .build()));
         public static final DeferredItem<Item> MIENSO_COOKED = ITEMS.registerSimpleItem("mienso_cooked",
-                        new Item.Properties().food(RAW_FOOD));
+                        new Item.Properties().food(new FoodProperties.Builder()
+                                        .nutrition(7)
+                                        .saturationModifier(6)
+                                        .effect(new MobEffectInstance(MobEffects.DIG_SPEED, 500), 1f)
+                                        .build()));
         public static final DeferredItem<Item> KAPUSTA_COOKED = ITEMS.registerSimpleItem("kapusta_cooked",
-                        new Item.Properties().food(RAW_FOOD));
+                        new Item.Properties().food(new FoodProperties.Builder()
+                                        .nutrition(5)
+                                        .saturationModifier(7)
+                                        .effect(new MobEffectInstance(MobEffects.ABSORPTION, 500), 1f)
+                                        .build()));
         public static final DeferredItem<Item> RUSKI_COOKED = ITEMS.registerSimpleItem("ruski_cooked",
-                        new Item.Properties().food(RAW_FOOD));
+                        new Item.Properties().food(new FoodProperties.Builder()
+                                        .nutrition(6)
+                                        .saturationModifier(3)
+                                        .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600), 1f)
+                                        .build()));
         public static final DeferredItem<Item> JAGODY_COOKED = ITEMS.registerSimpleItem("jagoda_cooked",
-                        new Item.Properties().food(RAW_FOOD));
+                        new Item.Properties().food(new FoodProperties.Builder()
+                                        .nutrition(2)
+                                        .saturationModifier(6)
+                                        .effect(new MobEffectInstance(MobEffects.REGENERATION, 240), 1f)
+                                        .build()));
+
+        public static final DeferredItem<Item> DANIE = ITEMS.registerSimpleItem("danie",
+                        new Item.Properties().food(new FoodProperties.Builder()
+                                        .nutrition(15)
+                                        .saturationModifier(15)
+                                        .build()));
 
         // Creates a creative tab with the id "examplemod:example_tab" for the example
         // item, that is placed after the combat tab
@@ -145,7 +171,9 @@ public class Items {
                                                 output.accept(SALT.get());
                                                 output.accept(WALEK.get());
 
-                                                output.accept(RUSKI_COOKED.get());
+                                                output.accept(DANIE.get());
+
+                                                output.accept(RUSKI_RAW.get());
                                                 output.accept(SYR_RAW.get());
                                                 output.accept(MIENSO_RAW.get());
                                                 output.accept(KAPUSTA_RAW.get());

@@ -1,0 +1,34 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 600,
+  "experience": 6.0,
+  "container": {
+    "count": 1,
+    "id": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "pierogis:ruski_cooked"
+    },
+    {
+      "item": "pierogis:kapusta_cooked"
+    },
+    {
+      "item": "pierogis:mienso_cooked"
+    },
+    {
+      "item": "pierogis:ruski_cooked"
+    },
+    {
+      "item": "pierogis:kapusta_cooked"
+    },
+    {
+      "item": "pierogis:mienso_cooked"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "pierogis:danie",
+    "count": 1
+  }
+}
