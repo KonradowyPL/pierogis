@@ -9,6 +9,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -18,8 +20,10 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.world.level.GameRules;
@@ -90,7 +94,7 @@ public class PierogisMod {
         if (minecraft.isPaused())
             return;
 
-        int radius = minecraft.level.getGameRules().getInt(ModGameRules.BORDER_RADIUS);
+        int radius = pl.konradowy.pierogis.ClientState.borderRadius;
         System.err.println("Client radius: " + radius);
 
         ClientLevel level = minecraft.level;
@@ -210,4 +214,19 @@ public class PierogisMod {
 
         return area;
     }
+
+    @SubscribeEvent
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ServerLevel level = player.serverLevel();
+
+            int radius = level.getGameRules()
+                    .getInt(ModGameRules.BORDER_RADIUS);
+
+            PacketDistributor.sendToPlayer(player,
+                    new BorderRadiusSyncPayload(radius));
+        }
+    }
+
 }
