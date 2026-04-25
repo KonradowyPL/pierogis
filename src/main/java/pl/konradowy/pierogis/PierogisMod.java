@@ -35,16 +35,14 @@ public class PierogisMod {
             MODID, // must match the resource location on the next line
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "siemanko")));
 
-    public static final GameRules.Key<GameRules.IntegerValue> BORDER_RADIUS = GameRules.register("pierogis",
-            GameRules.Category.MOBS,
-            GameRules.IntegerValue.create(100));
+    public static final GameRules.Key<GameRules.IntegerValue> BORDER_RADIUS =
+        GameRules.register("pierogis", GameRules.Category.MOBS, GameRules.IntegerValue.create(100));
 
     // The constructor for the mod class is the first code that is run when your mod
     // is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and
     // pass them in automatically.
     public PierogisMod(IEventBus modEventBus, ModContainer modContainer) {
-
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
