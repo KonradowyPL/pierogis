@@ -3,9 +3,11 @@ package pl.konradowy.pierogis;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -13,8 +15,10 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.world.level.GameRules;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PierogisMod.MODID)
@@ -31,11 +35,16 @@ public class PierogisMod {
             MODID, // must match the resource location on the next line
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "siemanko")));
 
+    public static final GameRules.Key<GameRules.IntegerValue> BORDER_RADIUS = GameRules.register("pierogis",
+            GameRules.Category.MOBS,
+            GameRules.IntegerValue.create(100));
+
     // The constructor for the mod class is the first code that is run when your mod
     // is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and
     // pass them in automatically.
     public PierogisMod(IEventBus modEventBus, ModContainer modContainer) {
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -72,4 +81,16 @@ public class PierogisMod {
         // LOGGER.info("HELLO from server starting");
     }
 
+    @SubscribeEvent
+    public void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
+        var server = event.getServer();
+
+        var overworld = server.overworld(); // or any ServerLevel
+        int radius = overworld.getGameRules().getInt(PierogisMod.BORDER_RADIUS);
+        System.err.println("Server radius: " + radius);
+        // This runs every server tick
+        server.getPlayerList().getPlayers().forEach(player -> {
+            // your logic here
+        });
+    }
 }

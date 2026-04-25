@@ -12,13 +12,10 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.minecraft.client.Minecraft;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = PierogisMod.MODID, dist = Dist.CLIENT)
@@ -42,6 +39,7 @@ public class PierogisModClient {
         PierogisMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 
+
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -53,6 +51,9 @@ public class PierogisModClient {
             return;
         if (minecraft.isPaused())
             return;
+
+        int radius = minecraft.level.getGameRules().getInt(PierogisMod.BORDER_RADIUS);
+        System.err.println("Client radius: " + radius);
 
         ClientLevel level = minecraft.level;
 
