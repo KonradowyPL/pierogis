@@ -42,7 +42,6 @@ public class PierogisModClient {
         PierogisMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 
-
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -52,18 +51,22 @@ public class PierogisModClient {
         // return;
         if (minecraft.level == null)
             return;
+        if (minecraft.isPaused())
+            return;
 
         ClientLevel level = minecraft.level;
 
         Vec3 cameraPos = minecraft.gameRenderer.getMainCamera().getPosition();
 
-        
         // scale
         double RADIUS = 1000;
         double x = (cameraPos.x - 0.5) / RADIUS;
-        double y = cameraPos.y;
+        double y = (cameraPos.y - 0.5) / RADIUS;
         double z = (cameraPos.z - 0.5) / RADIUS;
-        double r = 50 / RADIUS;
+
+        boolean isOutside = (x * x + z * z) > 1;
+
+        double r = 30 / RADIUS;
 
         double area = estimateArea(x, y, z, r);
         double realArea = area * RADIUS * RADIUS;
@@ -74,13 +77,16 @@ public class PierogisModClient {
             if (point == null)
                 return;
 
-            SimpleParticleType particle = Math.random() > 0.2 ? ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER
-                    : ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS;
+            point = new Vec3((point.x * RADIUS) + Math.random(), point.y * RADIUS, (point.z * RADIUS) + Math.random());
+
+            SimpleParticleType particle = isOutside ? ParticleTypes.FALLING_NECTAR
+                    : (Math.random() > 0.2 ? ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER
+                            : ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS);
 
             for (int j = 0; j < 5; j++) {
-                level.addParticle(particle, point.x * RADIUS + 0.5,
-                        point.y() * RADIUS + 0.5,
-                        point.z() * RADIUS + 0.5, 0, 0, 0);
+                level.addParticle(particle, point.x,
+                        point.y,
+                        point.z, 0, 0, 0);
 
             }
 
