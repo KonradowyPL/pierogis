@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -47,6 +45,57 @@ public class Items {
         public static final DeferredItem<BlockItem> KAFELKI_ITEM = ITEMS.register("kafelki",
                         () -> new PierogisBlock(KAFELKI.get(), new Item.Properties()));
 
+        // bloki pierogów
+        // ruski
+        public static final DeferredBlock<Block> RUSKI_BLOK = BLOCKS.register("ruski_crate",
+                        registryName -> new Block(BlockBehaviour.Properties.of()
+                                        .destroyTime(2.0f)
+                                        .explosionResistance(10.0f)
+                                        .sound(SoundType.MANGROVE_ROOTS)));
+        public static final DeferredItem<BlockItem> RUSKI_ITEM = ITEMS.register("ruski_crate",
+                        () -> new PierogisBlock(RUSKI_BLOK.get(), new Item.Properties()));
+
+        // syr
+        public static final DeferredBlock<Block> SYR_BLOK = BLOCKS.register("syr_crate",
+                        registryName -> new Block(BlockBehaviour.Properties.of()
+                                        .destroyTime(2.0f)
+                                        .explosionResistance(10.0f)
+                                        .sound(SoundType.MANGROVE_ROOTS)));
+
+        public static final DeferredItem<BlockItem> SYR_ITEM = ITEMS.register("syr_crate",
+                        () -> new PierogisBlock(SYR_BLOK.get(), new Item.Properties()));
+
+        // jagoda
+        public static final DeferredBlock<Block> JAGODA_BLOK = BLOCKS.register("jagoda_crate",
+                        registryName -> new Block(BlockBehaviour.Properties.of()
+                                        .destroyTime(2.0f)
+                                        .explosionResistance(10.0f)
+                                        .sound(SoundType.MANGROVE_ROOTS)));
+
+        public static final DeferredItem<BlockItem> JAGODA_ITEM = ITEMS.register("jagoda_crate",
+                        () -> new PierogisBlock(JAGODA_BLOK.get(), new Item.Properties()));
+
+        // mienso
+        public static final DeferredBlock<Block> MIENSO_BLOK = BLOCKS.register("mienso_crate",
+                        registryName -> new Block(BlockBehaviour.Properties.of()
+                                        .destroyTime(2.0f)
+                                        .explosionResistance(10.0f)
+                                        .sound(SoundType.MANGROVE_ROOTS)));
+
+        public static final DeferredItem<BlockItem> MIENSO_ITEM = ITEMS.register("mienso_crate",
+                        () -> new PierogisBlock(MIENSO_BLOK.get(), new Item.Properties()));
+
+        // kapusta
+        public static final DeferredBlock<Block> KAPUSTA_BLOCK = BLOCKS.register("kapusta_crate",
+                        registryName -> new Block(BlockBehaviour.Properties.of()
+                                        .destroyTime(2.0f)
+                                        .explosionResistance(10.0f)
+                                        .sound(SoundType.MANGROVE_ROOTS)));
+
+        public static final DeferredItem<BlockItem> KAPUSTA_ITEM = ITEMS.register("kapusta_crate",
+                        () -> new PierogisBlock(KAPUSTA_BLOCK.get(), new Item.Properties()));
+
+        @SuppressWarnings("deprecation")
         private static final FoodProperties RAW_FOOD = new FoodProperties.Builder()
                         .nutrition(-1)
                         .saturationModifier(-1)
@@ -106,30 +155,35 @@ public class Items {
                                         20 * 60 * 60 * 4)));
 
         // Gotowane pierogi
+        @SuppressWarnings("deprecation")
         public static final DeferredItem<Item> SYR_COOKED = ITEMS.registerSimpleItem("syr_cooked",
                         new Item.Properties().food(new FoodProperties.Builder()
                                         .nutrition(4)
                                         .saturationModifier(2)
                                         .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600), 1f)
                                         .build()));
+        @SuppressWarnings("deprecation")
         public static final DeferredItem<Item> MIENSO_COOKED = ITEMS.registerSimpleItem("mienso_cooked",
                         new Item.Properties().food(new FoodProperties.Builder()
                                         .nutrition(7)
                                         .saturationModifier(6)
                                         .effect(new MobEffectInstance(MobEffects.DIG_SPEED, 500), 1f)
                                         .build()));
+        @SuppressWarnings("deprecation")
         public static final DeferredItem<Item> KAPUSTA_COOKED = ITEMS.registerSimpleItem("kapusta_cooked",
                         new Item.Properties().food(new FoodProperties.Builder()
                                         .nutrition(5)
                                         .saturationModifier(7)
                                         .effect(new MobEffectInstance(MobEffects.ABSORPTION, 500), 1f)
                                         .build()));
+        @SuppressWarnings("deprecation")
         public static final DeferredItem<Item> RUSKI_COOKED = ITEMS.registerSimpleItem("ruski_cooked",
                         new Item.Properties().food(new FoodProperties.Builder()
                                         .nutrition(6)
                                         .saturationModifier(3)
                                         .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600), 1f)
                                         .build()));
+        @SuppressWarnings("deprecation")
         public static final DeferredItem<Item> JAGODY_COOKED = ITEMS.registerSimpleItem("jagoda_cooked",
                         new Item.Properties().food(new FoodProperties.Builder()
                                         .nutrition(2)
@@ -176,6 +230,13 @@ public class Items {
                                                 output.accept(KAPUSTA_COOKED.get());
                                                 output.accept(JAGODY_COOKED.get());
                                                 output.accept(RUSKI_COOKED.get());
+
+
+                                                output.accept(RUSKI_ITEM.get());
+                                                output.accept(SYR_ITEM.get());
+                                                output.accept(MIENSO_ITEM.get());
+                                                output.accept(KAPUSTA_ITEM.get());
+                                                output.accept(JAGODA_ITEM.get());
 
                                         }).build());
 

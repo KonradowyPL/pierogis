@@ -2,6 +2,12 @@
   "itemGroup.pierogis": "Farmer's Pierogis",
   "block.pierogis.kafelki": "Kafelki Kuchenne",
 
+  "block.pierogis.ruski_crate": "Block of pierogi ruskie",
+  "block.pierogis.kapusta_crate": "Block of pierogi z kapustą i grzybami",
+  "block.pierogis.syr_crate": "Block of pierogi z serem",
+  "block.pierogis.jagoda_crate": "Block of pierogi z jagodami",
+  "block.pierogis.mienso_crate": "Block of pierogi z mięsem",
+
   "item.pierogis.ciasto": "Surowe ciasto na pierogi",
   "item.pierogis.ciasto_flat": "Uwałkowane surowe ciasto na pierogi",
   "item.pierogis.syr_raw": "Surowy pieróg z serem",
