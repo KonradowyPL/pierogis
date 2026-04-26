@@ -38,14 +38,14 @@ public class Items {
         public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(PierogisMod.MODID);
 
         // example block
-        public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block",
+        public static final DeferredBlock<Block> KAFELKI = BLOCKS.register("kafelki",
                         registryName -> new Block(BlockBehaviour.Properties.of()
                                         .destroyTime(2.0f)
                                         .explosionResistance(10.0f)
                                         .sound(SoundType.MANGROVE_ROOTS)));
 
-        public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block",
-                        () -> new PierogisBlock(EXAMPLE_BLOCK.get(), new Item.Properties()));
+        public static final DeferredItem<BlockItem> KAFELKI_ITEM = ITEMS.register("kafelki",
+                        () -> new PierogisBlock(KAFELKI.get(), new Item.Properties()));
 
         private static final FoodProperties RAW_FOOD = new FoodProperties.Builder()
                         .nutrition(-1)
@@ -146,14 +146,14 @@ public class Items {
         // Creates a creative tab with the id "examplemod:example_tab" for the example
         // item, that is placed after the combat tab
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
-                        .register("example_tab", () -> CreativeModeTab.builder()
+                        .register("pierogis", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.pierogis")) // The language key for the
                                                                                              // title of your
                                                                                              // CreativeModeTab
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
                                         .icon(() -> RUSKI_COOKED.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
-                                                output.accept(EXAMPLE_BLOCK_ITEM.get());
+                                                output.accept(KAFELKI_ITEM.get());
 
                                                 output.accept(CIASTO.get());
                                                 output.accept(CIASTO_FLAT.get());

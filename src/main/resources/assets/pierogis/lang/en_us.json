@@ -1,6 +1,6 @@
 {
   "itemGroup.pierogis": "Farmer's Pierogis",
-  "block.pierogis.example_block": "Block of Pierogis",
+  "block.pierogis.kafelki": "Kafelki Kuchenne",
 
   "item.pierogis.ciasto": "Surowe ciasto na pierogi",
   "item.pierogis.ciasto_flat": "Uwałkowane surowe ciasto na pierogi",
@@ -16,10 +16,13 @@
   "item.pierogis.jagoda_cooked": "Pieróg z jagodami",
   "item.pierogis.kapusta_cooked": "Pieróg z kapustą i grzybami",
   "item.pierogis.mienso_cooked": "Pieróg z mięsem",
-  "item.pierogis.salt": "NaCl",
-  "tooltip.pierogis.salt": "Obtained by heating water in a basin",
+  "item.pierogis.salt": "Chlorek Sodu",
+  "tooltip.pierogis.salt": "Zdobywany poprzez ogrzewanie wody w kotle",
   "tooltip.pierogis.block": "Zupełnie jak kafelki u mojej Babci...",
   "item.pierogis.walek": "Wałek kuchenny",
+
+  "item.pierogis.jod": "Jod",
+
 
   "effect.pierogis.lugol": "Płyn Lugola",
   "item.minecraft.potion.effect.lugol": "Płyn Lugola",
