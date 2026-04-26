@@ -1,19 +1,15 @@
 package pl.konradowy.pierogis;
 
-import java.util.Set;
-
-import net.minecraft.core.Holder;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.EffectCure;
 
 public class LugolEffect extends MobEffect {
 
   public LugolEffect() {
-    super(MobEffectCategory.BENEFICIAL, 0x98D982); // color in hex
+    super(MobEffectCategory.BENEFICIAL, 0xfeec8e); // color in hex
   }
 
   @Override
@@ -23,10 +19,15 @@ public class LugolEffect extends MobEffect {
 
   @Override
   public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-    return true;
+    return false;
   }
 
-  public Set<EffectCure> getCures() {
-    return Set.of();
+  @Override
+  public void onEffectStarted(LivingEntity entity, int amplifier) {
+    MinecraftServer server = entity.getServer();
+    server.getPlayerList().broadcastSystemMessage(
+        Component.literal(
+            "Gracz " + entity.getName().getString() + " wypił płyn lugola!"),
+        false);
   }
 }

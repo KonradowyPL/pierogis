@@ -19,5 +19,6 @@
   "item.pierogis.salt": "NaCl",
   "tooltip.pierogis.salt": "Obtained by heating water in a basin",
   "tooltip.pierogis.block": "Zupełnie jak kafelki u mojej Babci...",
-  "item.pierogis.walek": "Wałek kuchenny"
+  "item.pierogis.walek": "Wałek kuchenny",
+  "effect.pierogis.lugol": "Płyn Lugola"
 }

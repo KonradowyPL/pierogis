@@ -1,18 +1,24 @@
 package pl.konradowy.pierogis;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Supplier;
-
+import java.util.TreeSet;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -78,6 +84,9 @@ public class PierogisMod {
         // LOGGER.info("HELLO from server starting");
     }
 
+    public Set<ServerPlayer> playersOutside = new HashSet<>();
+    public Set<ServerPlayer> playersOutsideWEffect = new HashSet<>();
+
     @SubscribeEvent
     public void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
         var server = event.getServer();
@@ -89,10 +98,55 @@ public class PierogisMod {
             Vec3 pos = player.getPosition(0);
             double distance = Math.sqrt((pos.x - 0.5) * (pos.x - 0.5) + (pos.z - 0.5) * (pos.z - 0.5));
             double beyond = distance - radius;
-            if (beyond < 0.5)
+
+            if (beyond < 0.5) {
+                playersOutsideWEffect.remove(player);
+                if (playersOutside.contains(player)) {
+                    playersOutside.remove(player);
+                    server.getPlayerList().broadcastSystemMessage(
+                            Component.literal(
+                                    "Gracz " + player.getName().getString() + " wrócił ze strefy radiacji!"),
+                            false);
+                }
                 return;
+            }
+
+            // wlasnie wszedł
+            if (!playersOutsideWEffect.contains(player)) {
+                playersOutsideWEffect.add(player);
+                player.level().playSound(
+                        null, // null = all nearby players
+                        player.position().x,
+                        player.position().y,
+                        player.position().z,
+                        HL_SOUND.get(),
+                        SoundSource.PLAYERS,
+                        1.0F,
+                        1.0F);
+            }
 
             if (player.hasEffect((Holder<MobEffect>) MY_EFFECT)) {
+                if (!playersOutside.contains(player)) {
+                    playersOutside.add(player);
+
+                    server.getPlayerList().broadcastSystemMessage(
+                            Component.literal(
+                                    "Gracz " + player.getName().getString() + " uciekł do strefy radiacji!"),
+                            false);
+                } else if (ticks % 20 == 0) {
+                    MobEffectInstance effect = player.getEffect((Holder<MobEffect>) MY_EFFECT);
+                    int time = effect.getDuration();
+                    if (time > 60 * 10 * 20)
+                        return;
+                    // 10 minut
+                    int seconds = (time / 20) % 60;
+                    int minutes = (time / (20 * 60));
+                    player.displayClientMessage(
+                            Component.literal("Płyn lugola: " + minutes + ":" + seconds + "!"),
+                            true // true = action bar
+                    );
+
+                }
                 return;
             }
 
@@ -105,12 +159,14 @@ public class PierogisMod {
 
             if (ticks % 50 != 0)
                 return;
+
             player.hurt(player.damageSources().fellOutOfWorld(), 1);
 
             if (beyond > 10) {
                 player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200, 0, true, false, false));
             }
         });
+
     }
 
     @SubscribeEvent
