@@ -26,6 +26,9 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.phys.Vec3;
 
@@ -74,13 +77,25 @@ public class PierogisMod {
         var server = event.getServer();
 
         var overworld = server.overworld(); // or any ServerLevel
+        long ticks = overworld.getGameTime();
+        if (ticks % 25 != 0)
+            return;
         int radius = overworld.getGameRules().getInt(ModGameRules.BORDER_RADIUS);
-        System.err.println("Server radius: " + radius);
-        // This runs every server tick
         server.getPlayerList().getPlayers().forEach(player -> {
-            // your logic here
+            Vec3 pos = player.getPosition(0);
+            double distance = Math.sqrt(pos.x * pos.x + pos.z * pos.z);
+            double beyond = distance - radius;
+            if (beyond < 2)
+                return;
+
+            player.addEffect(new MobEffectInstance(MobEffects.POISON, 30));
+
+            if (beyond > 10) {
+                player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
+            }
         });
     }
+
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 

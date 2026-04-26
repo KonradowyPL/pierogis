@@ -52,14 +52,13 @@ public class PierogisModClient {
             return;
 
         int radius = pl.konradowy.pierogis.ClientState.borderRadius;
-        System.err.println("Client radius: " + radius);
 
         ClientLevel level = minecraft.level;
 
         Vec3 cameraPos = minecraft.gameRenderer.getMainCamera().getPosition();
 
         // scale
-        double RADIUS = 1000;
+        double RADIUS = radius;
         double x = (cameraPos.x - 0.5) / RADIUS;
         double y = (cameraPos.y - 0.5) / RADIUS;
         double z = (cameraPos.z - 0.5) / RADIUS;
