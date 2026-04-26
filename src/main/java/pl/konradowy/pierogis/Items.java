@@ -103,7 +103,7 @@ public class Items {
 
         public static final Supplier<Potion> PLYN_LUGOLA = POTIONS.register("lugol",
                         () -> new Potion(new MobEffectInstance((Holder<MobEffect>) PierogisMod.MY_EFFECT,
-                                        20 * 60 * 60)));
+                                        20 * 60 * 60 * 4)));
 
         // Gotowane pierogi
         public static final DeferredItem<Item> SYR_COOKED = ITEMS.registerSimpleItem("syr_cooked",
