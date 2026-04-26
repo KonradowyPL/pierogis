@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pierogis:example_block"
+          "name": "pierogis:mienso_crate"
         }
       ]
     }

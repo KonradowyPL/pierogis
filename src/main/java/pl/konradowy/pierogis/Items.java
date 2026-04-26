@@ -53,7 +53,7 @@ public class Items {
                                         .explosionResistance(10.0f)
                                         .sound(SoundType.MANGROVE_ROOTS)));
         public static final DeferredItem<BlockItem> RUSKI_ITEM = ITEMS.register("ruski_crate",
-                        () -> new PierogisBlock(RUSKI_BLOK.get(), new Item.Properties()));
+                        () -> new BlockItem(RUSKI_BLOK.get(), new Item.Properties()));
 
         // syr
         public static final DeferredBlock<Block> SYR_BLOK = BLOCKS.register("syr_crate",
@@ -63,7 +63,7 @@ public class Items {
                                         .sound(SoundType.MANGROVE_ROOTS)));
 
         public static final DeferredItem<BlockItem> SYR_ITEM = ITEMS.register("syr_crate",
-                        () -> new PierogisBlock(SYR_BLOK.get(), new Item.Properties()));
+                        () -> new BlockItem(SYR_BLOK.get(), new Item.Properties()));
 
         // jagoda
         public static final DeferredBlock<Block> JAGODA_BLOK = BLOCKS.register("jagoda_crate",
@@ -73,7 +73,7 @@ public class Items {
                                         .sound(SoundType.MANGROVE_ROOTS)));
 
         public static final DeferredItem<BlockItem> JAGODA_ITEM = ITEMS.register("jagoda_crate",
-                        () -> new PierogisBlock(JAGODA_BLOK.get(), new Item.Properties()));
+                        () -> new BlockItem(JAGODA_BLOK.get(), new Item.Properties()));
 
         // mienso
         public static final DeferredBlock<Block> MIENSO_BLOK = BLOCKS.register("mienso_crate",
@@ -83,7 +83,7 @@ public class Items {
                                         .sound(SoundType.MANGROVE_ROOTS)));
 
         public static final DeferredItem<BlockItem> MIENSO_ITEM = ITEMS.register("mienso_crate",
-                        () -> new PierogisBlock(MIENSO_BLOK.get(), new Item.Properties()));
+                        () -> new BlockItem(MIENSO_BLOK.get(), new Item.Properties()));
 
         // kapusta
         public static final DeferredBlock<Block> KAPUSTA_BLOCK = BLOCKS.register("kapusta_crate",
@@ -93,7 +93,7 @@ public class Items {
                                         .sound(SoundType.MANGROVE_ROOTS)));
 
         public static final DeferredItem<BlockItem> KAPUSTA_ITEM = ITEMS.register("kapusta_crate",
-                        () -> new PierogisBlock(KAPUSTA_BLOCK.get(), new Item.Properties()));
+                        () -> new BlockItem(KAPUSTA_BLOCK.get(), new Item.Properties()));
 
         @SuppressWarnings("deprecation")
         private static final FoodProperties RAW_FOOD = new FoodProperties.Builder()
