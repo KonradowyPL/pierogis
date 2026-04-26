@@ -1,6 +1,5 @@
 package pl.konradowy.pierogis;
 
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.GameRules;
 
 public class ModGameRules {

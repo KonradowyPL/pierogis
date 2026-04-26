@@ -207,36 +207,37 @@ public class Items {
                                         .withTabsBefore(CreativeModeTabs.COMBAT)
                                         .icon(() -> RUSKI_COOKED.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
-                                                output.accept(KAFELKI_ITEM.get());
 
-                                                output.accept(CIASTO.get());
-                                                output.accept(CIASTO_FLAT.get());
-                                                output.accept(SALT.get());
-                                                output.accept(WALEK.get());
-
-                                                output.accept(JOD.get());
-
-                                                output.accept(DANIE.get());
-
-                                                output.accept(RUSKI_RAW.get());
-                                                output.accept(SYR_RAW.get());
                                                 output.accept(MIENSO_RAW.get());
+                                                output.accept(SYR_RAW.get());
                                                 output.accept(KAPUSTA_RAW.get());
                                                 output.accept(JAGODY_RAW.get());
                                                 output.accept(RUSKI_RAW.get());
 
-                                                output.accept(SYR_COOKED.get());
+                                                //
+                                                output.accept(WALEK.get());
+                                                output.accept(SALT.get());
+                                                output.accept(JOD.get());
+                                                output.accept(DANIE.get());
+
                                                 output.accept(MIENSO_COOKED.get());
+                                                output.accept(SYR_COOKED.get());
                                                 output.accept(KAPUSTA_COOKED.get());
                                                 output.accept(JAGODY_COOKED.get());
                                                 output.accept(RUSKI_COOKED.get());
 
+                                                //
+                                                output.accept(KAFELKI_ITEM.get());
+                                                output.accept(CIASTO.get());
+                                                output.accept(CIASTO_FLAT.get());
+                                                output.accept(net.minecraft.world.item.Items.POTION);
 
-                                                output.accept(RUSKI_ITEM.get());
-                                                output.accept(SYR_ITEM.get());
+                                                // gotowe itemy
                                                 output.accept(MIENSO_ITEM.get());
+                                                output.accept(SYR_ITEM.get());
                                                 output.accept(KAPUSTA_ITEM.get());
                                                 output.accept(JAGODA_ITEM.get());
+                                                output.accept(RUSKI_ITEM.get());
 
                                         }).build());
 
