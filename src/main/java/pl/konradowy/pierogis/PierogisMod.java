@@ -2,11 +2,17 @@ package pl.konradowy.pierogis;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.TreeSet;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.content.fluids.potion.PotionFluid.BottleType;
+import com.simibubi.create.content.fluids.potion.PotionFluidHandler;
+import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -25,7 +31,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -37,6 +45,8 @@ import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -194,15 +204,5 @@ public class PierogisMod {
         if (instance.getEffect().getRegisteredName().equals("pierogis:lugol")) {
             instance.getCures().clear();
         }
-    }
-
-    @SubscribeEvent // on the game event bus
-    public void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
-        // Gets the builder to add recipes to
-        PotionBrewing.Builder builder = event.getBuilder();
-        // builder.addContainer(net.minecraft.world.item.Items.ENDER_EYE);
-        // builder.addContainerRecipe(
-        //    net.minecraft.world.item.Items.POTION,  net.minecraft.world.item.Items.ENDER_EYE, net.minecraft.world.item.Items.ENDER_EYE // Items.JOD.get()
-        // );
     }
 }

@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 1000,
+      "fluid": "create:chocolate"
+    }
+  ],
+  "results": [
+    {
+      "id": "pierogis:jod"
+    }
+  ]
+}
