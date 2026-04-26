@@ -22,6 +22,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -29,6 +33,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -189,5 +194,15 @@ public class PierogisMod {
         if (instance.getEffect().getRegisteredName().equals("pierogis:lugol")) {
             instance.getCures().clear();
         }
+    }
+
+    @SubscribeEvent // on the game event bus
+    public void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
+        // Gets the builder to add recipes to
+        PotionBrewing.Builder builder = event.getBuilder();
+        // builder.addContainer(net.minecraft.world.item.Items.ENDER_EYE);
+        // builder.addContainerRecipe(
+        //    net.minecraft.world.item.Items.POTION,  net.minecraft.world.item.Items.ENDER_EYE, net.minecraft.world.item.Items.ENDER_EYE // Items.JOD.get()
+        // );
     }
 }

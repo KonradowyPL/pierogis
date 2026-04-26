@@ -20,5 +20,10 @@
   "tooltip.pierogis.salt": "Obtained by heating water in a basin",
   "tooltip.pierogis.block": "Zupełnie jak kafelki u mojej Babci...",
   "item.pierogis.walek": "Wałek kuchenny",
-  "effect.pierogis.lugol": "Płyn Lugola"
+
+  "effect.pierogis.lugol": "Płyn Lugola",
+  "item.minecraft.potion.effect.lugol": "Płyn Lugola",
+  "item.minecraft.splash_potion.effect.lugol": "Płyn Lugola",
+  "item.minecraft.lingering_potion.effect.lugol": "Płyn Lugola",
+  "item.minecraft.tipped_arrow.effect.lugol": "Płyn Lugola"
 }

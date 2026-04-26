@@ -1,9 +1,13 @@
 package pl.konradowy.pierogis;
 
+import java.util.function.Supplier;
+
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -14,7 +18,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -73,6 +79,8 @@ public class Items {
         public static final DeferredItem<Item> CIASTO_FLAT = ITEMS.register("ciasto_flat",
                         () -> new Item(new Item.Properties()));
 
+        public static final DeferredItem<Item> JOD = ITEMS.register("jod", () -> new Item(new Item.Properties()));
+
         // Surowe pierogi
         public static final DeferredItem<Item> SYR_RAW = ITEMS.registerSimpleItem("syr_raw",
                         new Item.Properties().food(RAW_FOOD));
@@ -89,6 +97,13 @@ public class Items {
         public static final DeferredItem<Item> WALEK = ITEMS.register(
                         "walek",
                         () -> new WalekItem(new Item.Properties().attributes(walek_modifiers)));
+
+        public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION,
+                        PierogisMod.MODID);
+
+        public static final Supplier<Potion> PLYN_LUGOLA = POTIONS.register("lugol",
+                        () -> new Potion(new MobEffectInstance((Holder<MobEffect>) PierogisMod.MY_EFFECT,
+                                        20 * 60 * 60)));
 
         // Gotowane pierogi
         public static final DeferredItem<Item> SYR_COOKED = ITEMS.registerSimpleItem("syr_cooked",
@@ -145,6 +160,8 @@ public class Items {
                                                 output.accept(SALT.get());
                                                 output.accept(WALEK.get());
 
+                                                output.accept(JOD.get());
+
                                                 output.accept(DANIE.get());
 
                                                 output.accept(RUSKI_RAW.get());
@@ -165,6 +182,7 @@ public class Items {
         public static void register(IEventBus eventBus) {
                 ITEMS.register(eventBus);
                 BLOCKS.register(eventBus);
+                POTIONS.register(eventBus);
                 CREATIVE_MODE_TABS.register(eventBus);
 
         }
