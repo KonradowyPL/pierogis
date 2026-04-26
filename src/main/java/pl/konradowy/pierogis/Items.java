@@ -152,7 +152,7 @@ public class Items {
 
         public static final Supplier<Potion> PLYN_LUGOLA = POTIONS.register("lugol",
                         () -> new Potion(new MobEffectInstance((Holder<MobEffect>) PierogisMod.MY_EFFECT,
-                                        20 * 60 * 60 * 4)));
+                                        20 * 60 * 60 * 10))); // 10h
 
         // Gotowane pierogi
         @SuppressWarnings("deprecation")
