@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -21,8 +22,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.EffectCure;
-import net.neoforged.neoforge.common.EffectCures;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -30,7 +29,6 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import vectorwing.farmersdelight.common.registry.ModEffects;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PierogisMod.MODID)
@@ -44,8 +42,12 @@ public class PierogisMod {
             .create(BuiltInRegistries.SOUND_EVENT, MODID);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MY_SOUND = SOUND_EVENTS.register(
-            MODID, // must match the resource location on the next line
+            "siemanko", // must match the resource location on the next line
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "siemanko")));
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> HL_SOUND = SOUND_EVENTS.register(
+            "hl", // must match the resource location on the next line
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "hl")));
 
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MODID);
     public static final Supplier<MobEffect> MY_EFFECT = EFFECTS.register("lugol", LugolEffect::new);
@@ -85,10 +87,14 @@ public class PierogisMod {
         int radius = overworld.getGameRules().getInt(ModGameRules.BORDER_RADIUS);
         server.getPlayerList().getPlayers().forEach(player -> {
             Vec3 pos = player.getPosition(0);
-            double distance = Math.sqrt(pos.x * pos.x + pos.z * pos.z);
+            double distance = Math.sqrt((pos.x - 0.5) * (pos.x - 0.5) + (pos.z - 0.5) * (pos.z - 0.5));
             double beyond = distance - radius;
-            if (beyond < 2)
+            if (beyond < 0.5)
                 return;
+
+            if (player.hasEffect((Holder<MobEffect>) MY_EFFECT)) {
+                return;
+            }
 
             player.removeEffect(MobEffects.REGENERATION);
             player.removeEffect(MobEffects.DAMAGE_RESISTANCE);

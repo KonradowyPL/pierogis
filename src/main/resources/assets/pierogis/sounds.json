@@ -5,5 +5,12 @@
         "name": "pierogis:siemanko"
       }
     ]
+  },
+  "hl": {
+    "sounds": [
+      {
+        "name": "pierogis:hl"
+      }
+    ]
   }
 }
