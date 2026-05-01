@@ -29,6 +29,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerSetSpawnEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -185,6 +186,29 @@ public class PierogisMod {
         MobEffectInstance instance = event.getEffectInstance();
         if (instance.getEffect().getRegisteredName().equals("pierogis:lugol")) {
             instance.getCures().clear();
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerSetSpawn(PlayerSetSpawnEvent event) {
+        var player = event.getEntity();
+        var newSpawn = event.getNewSpawn();
+        var pos = player.position();
+
+        if (newSpawn != null) {
+            double distance = Math.sqrt((pos.x - 0.5) * (pos.x - 0.5) + (pos.z - 0.5) * (pos.z - 0.5));
+            var server = player.getServer();
+            var overworld = server.overworld();
+            int radius = overworld.getGameRules().getInt(ModGameRules.BORDER_RADIUS);
+
+            Boolean beyond = distance > radius;
+
+            if (beyond) {
+                event.setCanceled(true);
+
+                player.sendSystemMessage(
+                        net.minecraft.network.chat.Component.literal("Nastąpił nieoczekiwany glitch w matrixie"));
+            }
         }
     }
 }
